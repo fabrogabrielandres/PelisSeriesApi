@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import "./App.css"
+import { Header } from './components/Header/Header'
+import { MainNav } from './components/MainNav/MainNav'
+import { Container } from '@material-ui/core'
+import { Trending } from './Pages/Trending/Trending';
+import { Movies } from './Pages/Movies/Movies';
+import { Series } from './Pages/Series/Series';
 
-function App() {
+import {
+BrowserRouter as Router,
+  Route,
+  Switch,
+  
+} from "react-router-dom";
+import { Search } from './Pages/Search/Search'
+
+
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Header />
+      <div className="app">
+        <Container>
+          <Switch>
+            <Route exact path="/" component={Trending}/>
+            <Route path="/movies" component={Movies}/>
+            <Route path="/series" component={Series}/>
+            <Route path="/search" component={Search}/>
+          </Switch>
+        </Container>
+      </div>
+      <MainNav />
+    </Router>
+  )
 }
 
-export default App;
+
