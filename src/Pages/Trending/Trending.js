@@ -4,6 +4,7 @@ import "./Trending.css"
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { SingleContent } from '../../components/SingleContent/SingleContent';
+import { CustomPagination } from '../../components/Pagination/CustomPagination';
 
 
 export const Trending = () => {
@@ -12,24 +13,25 @@ export const Trending = () => {
     const fetchTrending = async () => {
         const { data } = await axios.get(
             `https://api.themoviedb.org/3/trending/all/day?api_key=e5ba07287829fe84526c037d50b2a2b9&page=${page}`
-            );
+        );
         setContent(data.results);
-      };
-     
+    };
+
     useEffect(() => {
         fetchTrending()
-    }, [])
+    }, [page])
 
 
     return (
-        <div className="pageTitle">
+        <div>
+
+            <spam className="pageTitle"> Trending </spam>
             <div className="trending">
-                { content && content.map((c)=>
-                    <SingleContent key={c.id} c={c}/>      
+                {content && content.map((c) =>
+                    <SingleContent key={c.id} c={c} />
                 )}
             </div>
-            
-            
+            <CustomPagination setPage={setPage} />
         </div>
     )
 }
