@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -7,10 +7,10 @@ import MovieIcon from '@material-ui/icons/Movie';
 import SearchIcon from '@material-ui/icons/Search';
 import TvIcon from "@material-ui/icons/Tv"
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
-    height: "10%",
     width:"100%",
     position: 'fixed',
     bottom: 0,
@@ -23,14 +23,35 @@ const useStyles = makeStyles({
 export const MainNav=()=> {
   const classes = useStyles();
   const [value, setValue] = useState(0);
+  const history=useHistory();
+
+
+
+  useEffect(() => {
+    switch (value) {
+      case 0:
+        return history.push("/")
+      case 1: 
+      return history.push("/movies")
+      case 2: 
+      return history.push("/series")
+      case 3: 
+      return history.push("/")
+        
+      default:
+        return history.push("/search")
+      }    
+  }, [history,value])
+
+
+
 
   return (
     <BottomNavigation
       value={value}
       onChange={(event, newValue) => {
         setValue(newValue);
-        console.log(newValue)
-      }}
+        }}
       showLabels
       className={classes.root}
     >
