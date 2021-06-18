@@ -36,10 +36,10 @@ export const MainNav=()=> {
       case 2: 
       return history.push("/series")
       case 3: 
-      return history.push("/")
+      return history.push("/search")
         
       default:
-        return history.push("/search")
+        return history.push("/")
       }    
   }, [history,value])
 
