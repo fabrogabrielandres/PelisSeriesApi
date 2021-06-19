@@ -29,6 +29,7 @@ export const Movies = () => {
 
     useEffect(() => {
         fetchMovie()
+        // eslint-disable-next-line
     }, [page,genreforURL])
 
     return (

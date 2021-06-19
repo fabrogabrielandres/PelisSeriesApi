@@ -1,6 +1,6 @@
 import React from 'react'
 import "./SingleContent.css"
-import { img_300, img_500, unavailable } from '../config/config'
+import { img_300,  unavailable } from '../config/config'
 import { Badge } from '@material-ui/core'
 import { ContentModal } from '../ContentModal/ContentModal'
 
